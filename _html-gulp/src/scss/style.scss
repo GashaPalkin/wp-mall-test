@@ -1,0 +1,520 @@
+@import "base/*.scss";
+@import "global/*.scss";
+@import "**/_*.scss";
+@import "../components/**/*.scss";
+
+/*=============== BREAKPOINTS ===============*/
+$xxs: 320px;
+$xs: 500px;
+$sm: 768px;
+$md: 991px;
+$lg: 1100px;
+$xl: 1250px;
+$xxl: 1600px;
+
+/*=============== MIXINS ===============*/
+@mixin respond-to($breakpoint-min, $breakpoint-max) {
+  @media (min-width: $breakpoint-min) and (max-width: $breakpoint-max) {
+    @content;
+  }
+}
+
+/*=============== VARS ===============*/
+$header-height: 90px;
+$header-gap: 5vw;
+$container-padding-lg: 0px 35px;
+$container-padding-sm: 0px 15px;
+
+h1 {
+  font-size: 48px;
+  font-weight: 700;
+  @media (min-width: 320px) and (max-width: 1400px) {
+    font-size: calc(30px + (48 - 30) * ((100vw - 320px) / (1400 - 320)));
+  }
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  @media (min-width: 320px) and (max-width: 1400px) {
+    font-size: calc(20px + (24 - 20) * ((100vw - 320px) / (1400 - 320)));
+  }
+}
+
+ul {
+  padding-left: 0px;
+}
+
+.search {
+  position: relative;
+  display: inline-block;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.search input {
+  width: 260px;
+  height: 40px;
+  padding: 0px 15px;
+  background: white;
+  border: none;
+  border-radius: 85px;
+  box-shadow: 2px 4px 11px rgba(0, 0, 0, 0.17);
+}
+.search svg {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.header {
+  height: $header-height;
+  padding: $container-padding-lg;
+  @include respond-to($xxs, $sm) {
+    padding: $container-padding-sm;
+  }
+  box-shadow: 0px 0px 5px rgb(194, 194, 194);
+  justify-content: space-between;
+  align-items: center;
+  color: #6b7073;
+  @include respond-to($xxs, $sm) {
+    padding: $container-padding-sm;
+    height: calc($header-height - 15px);
+  }
+  .logo {
+    padding: 8px 0px;
+  }
+  .header-right-side {
+    gap: calc($header-gap + 10px);
+    @include respond-to($xxs, $lg) {
+      gap: calc($header-gap + 0px);
+    }
+    align-items: center;
+  }
+  .header-info {
+    gap: calc($header-gap + 10px);
+    @include respond-to($xxs, $lg) {
+      gap: calc($header-gap + 0px);
+    }
+    align-items: center;
+  }
+  .hours {
+    text-align: right;
+  }
+  .header-links {
+    padding-left: 0;
+    gap: calc($header-gap + 0px);
+    @include respond-to($xxs, $md) {
+      display: none;
+    }
+  }
+
+  .search {
+    @include respond-to($xxs, $md) {
+      display: none;
+    }
+  }
+
+  #toggle {
+    width: 34px;
+    height: 24px;
+  }
+
+  #toggle div {
+    width: 100%;
+    height: 4px;
+    background: #cd3b31;
+    cursor: pointer;
+    margin: 4px auto;
+    transition: all 0.3s;
+    backface-visibility: hidden;
+  }
+
+  #toggle.on .one {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  #toggle.on .two {
+    opacity: 0;
+  }
+
+  #toggle.on .three {
+    transform: rotate(-45deg) translate(7px, -8px);
+  }
+}
+
+// for large screens
+.menu {
+  padding: $container-padding-lg;
+  padding-top: 35px;
+  width: 100%;
+  height: calc(100vh - $header-height);
+  border: 1px solid rgb(229, 229, 229);
+  display: none;
+  .search {
+    margin-bottom: 35px;
+    @include respond-to($sm, 9999px) {
+      display: none;
+    }
+  }
+  ul {
+    li {
+      margin-bottom: 25px;
+    }
+  }
+  h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .menu-left-side {
+    padding: 10px 0px;
+    flex-basis: 10%;
+    border-right: 1px solid #c4c4c4;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  .menu-right-side {
+    flex-basis: 90%;
+    justify-content: space-evenly;
+  }
+  .shop-colums {
+    column-count: 2;
+  }
+}
+
+// mobile menu for small screens
+@include respond-to($xxs, $sm) {
+  .menu {
+    padding: $container-padding-sm;
+    padding-top: 30px;
+    height: calc(100vh - $header-height);
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    ul {
+      display: none;
+    }
+    h4 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .menu-left-side {
+      padding: 0px;
+      flex-basis: unset;
+      border-right: none;
+      text-align: center;
+      ul {
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        li {
+          margin-bottom: 20px;
+        }
+      }
+    }
+    .menu-right-side {
+      flex-basis: unset;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.breadcrumbs {
+  color: darkgrey;
+  padding: $container-padding-lg;
+  margin: 20px 0px;
+  @include respond-to($xxs, $sm) {
+    padding: $container-padding-sm;
+    margin: 15px 0px;
+  }
+}
+
+section {
+  padding: $container-padding-lg;
+  margin-bottom: 80px;
+  @include respond-to($xxs, $sm) {
+    padding: $container-padding-sm;
+    margin-bottom: 40px;
+  }
+}
+
+.red-circle {
+  list-style-type: disc;
+  @include respond-to($xxs, $sm) {
+    padding-left: 20px;
+  }  
+}
+.red-circle li::marker {
+  color: #cd3b31;
+  font-size: 20px;
+}
+
+.about {
+  gap: 40px;
+  align-items: center;
+  @include respond-to($xxs, 1400px) {
+    flex-direction: column;
+  }
+  .banner {
+    width: 60%;
+    @include respond-to($xxs, 1400px) {
+      width: 100%;
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    @include respond-to($xxs, $md) {
+      gap: 10px;
+    }
+  }
+  .download {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+}
+
+.clients h1 {
+  margin-bottom: 24px;
+}
+
+.banners img,
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clients-section-content {
+  gap: 40px;
+  align-items: center;
+  @include respond-to($xxs, $md) {
+    flex-direction: column-reverse;
+  }
+  .clients-slider {
+    width: 50%;
+    @include respond-to($xxs, $md) {
+      width: 100%;
+    }
+  }
+}
+.advantages {
+  display: flex;
+  gap: 35px;
+  margin-bottom: 30px;
+  @include respond-to($xxs, $lg) {
+    flex-direction: column;
+  }
+  p {
+    color: #6b7073;
+    font-weight: 700;
+  }
+  .numbers {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-basis: 10%;
+    justify-content: space-between;
+    @include respond-to($xxs, $xs) {
+      flex-direction: column;
+      gap: 20px;          
+    }
+    @include respond-to($xs, $lg) {
+      flex-direction: row;
+      gap: 10px;
+    }    
+  }
+  .number-item {
+    display: flex;
+    flex-direction: column;
+    @include respond-to($xxs, $xs) {
+      align-items: center;     
+    }
+  }
+  .number {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+  .banners {
+    display: flex;
+    flex-basis: 90%;
+    gap: 20px;
+    @include respond-to($xxs, $sm) {
+      flex-direction: column;   
+      flex-basis:content;  
+    }    
+  }
+  .banner-1 {
+    flex-basis: 40%;
+  }
+  .banner-2 {
+    flex-basis: 60%;
+  }
+}
+
+.gallery {
+  display: flex;
+  gap: 20px;
+  @include respond-to($xxs, $sm) {
+    flex-direction: column; 
+  }    
+
+  .banner-3 {
+    flex-basis: 25%;
+  }
+  .banner-4 {
+    flex-basis: 30%;
+  }
+  .banner-5 {
+    flex-basis: 45%;
+  }
+}
+
+.footer {
+  padding: $container-padding-lg;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include respond-to($xxs, $sm) {
+    display: none;
+  }
+  justify-content: space-between;
+  gap: 15px;
+  box-shadow: 0px -9px 17px rgba(0, 0, 0, 0.1);
+
+  .footer-links {
+    @media (min-width: 320px) and (max-width: 1800px) {
+      gap: calc(20px + (50 - 20) * ((100vw - 320px) / (1800 - 320)));
+    }
+    @include respond-to($xxs, $lg) {
+      display: none;
+    }
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 320px) and (max-width: 1800px) {
+      gap: calc(15px + (30 - 15) * ((100vw - 320px) / (1800 - 320)));
+    }
+  }
+  .searh-social {
+    flex-direction: column;
+    @media (min-width: 320px) and (max-width: 1800px) {
+      gap: calc(20px + (50 - 20) * ((100vw - 320px) / (1800 - 320)));
+    }
+  }
+  .social-links {
+    gap: 20px;
+  }
+  .contacts {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.footer-mobile {
+  padding: $container-padding-sm;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0px -9px 17px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  ul li {
+    margin-bottom: 10px;
+  }
+  .social-links {
+    gap: 20px;
+  }
+  .phone {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  @include respond-to($sm, 9999px) {
+    display: none;
+  }
+}
+
+// for carousel
+.swiper {
+  width: auto;
+  height: auto;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.clients-swiper {
+  padding-top: 25px;
+}
+
+.control {
+  position: relative;
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 25px;
+}
+
+.swiper-button-prev:after {
+  content: url("../img/left-arrow.svg");
+}
+
+.swiper-button-next:after {
+  content: url("../img/right-arrow.svg");
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 4px;
+  top: auto;
+  left: 0;
+  width: unset;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative;
+  width: calc(var(--swiper-navigation-size) / 44 * 27);
+  height: var(--swiper-navigation-size);
+  z-index: 10;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--swiper-navigation-color, var(--swiper-theme-color));
+}
+.swiper-pagination {
+  position: relative;
+}
+
+span.swiper-pagination-bullet {
+  background: #6b7073;
+}
