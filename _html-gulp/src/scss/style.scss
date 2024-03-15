@@ -249,7 +249,7 @@ section {
   list-style-type: disc;
   @include respond-to($xxs, $sm) {
     padding-left: 20px;
-  }  
+  }
 }
 .red-circle li::marker {
   color: #cd3b31;
@@ -259,13 +259,16 @@ section {
 .about {
   gap: 40px;
   align-items: center;
-  @include respond-to($xxs, 1400px) {
+  @include respond-to($xxs, $xl) {
     flex-direction: column;
   }
   .banner {
     width: 60%;
-    @include respond-to($xxs, 1400px) {
+    @include respond-to($xxs, $xl) {
       width: 100%;
+    }
+    @include respond-to($xl, 1600px) {
+      width: 50%;
     }
   }
   .content {
@@ -336,18 +339,18 @@ section {
     justify-content: space-between;
     @include respond-to($xxs, $xs) {
       flex-direction: column;
-      gap: 20px;          
+      gap: 20px;
     }
     @include respond-to($xs, $lg) {
       flex-direction: row;
       gap: 10px;
-    }    
+    }
   }
   .number-item {
     display: flex;
     flex-direction: column;
     @include respond-to($xxs, $xs) {
-      align-items: center;     
+      align-items: center;
     }
   }
   .number {
@@ -360,9 +363,9 @@ section {
     flex-basis: 90%;
     gap: 20px;
     @include respond-to($xxs, $sm) {
-      flex-direction: column;   
-      flex-basis:content;  
-    }    
+      flex-direction: column;
+      flex-basis: content;
+    }
   }
   .banner-1 {
     flex-basis: 40%;
@@ -376,8 +379,8 @@ section {
   display: flex;
   gap: 20px;
   @include respond-to($xxs, $sm) {
-    flex-direction: column; 
-  }    
+    flex-direction: column;
+  }
 
   .banner-3 {
     flex-basis: 25%;

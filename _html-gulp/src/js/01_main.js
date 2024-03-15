@@ -7,6 +7,11 @@ let mainSwiper = new Swiper(".main-banner", {
   grabCursor: true,
   effect: "creative",
   loop: true,
+  autoHeight: true,
+  pagination: {
+    el: ".swiper-pagination",
+    type: "progressbar",
+  },
   autoplay: {
     delay: 4000,
     disableOnInteraction: false,
